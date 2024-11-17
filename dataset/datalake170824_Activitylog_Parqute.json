@@ -1,0 +1,20 @@
+{
+	"name": "datalake170824_Activitylog_Parqute",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_datalake1908242",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "parquate"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

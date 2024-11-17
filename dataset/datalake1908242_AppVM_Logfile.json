@@ -1,0 +1,29 @@
+{
+	"name": "datalake1908242_AppVM_Logfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_datalake1908242",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "u_ex240912.log",
+				"fileSystem": "logs"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "#Software: Microsoft Internet Information Services 10.0",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

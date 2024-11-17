@@ -1,0 +1,18 @@
+{
+	"name": "datalake1908242_logfile",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_datalake1908242",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "logs"
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

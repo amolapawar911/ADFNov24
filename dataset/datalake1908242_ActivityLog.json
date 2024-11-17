@@ -1,0 +1,33 @@
+{
+	"name": "datalake1908242_ActivityLog",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_datalake1908242",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"filename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Correlationid\tOperationname\tStatus\tEventcategory\tLevel\tTime\tSubscription\tEventinitiatedby\tResourcetype\tResourcegroup\tResource",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

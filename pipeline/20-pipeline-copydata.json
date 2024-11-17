@@ -1,0 +1,151 @@
+{
+	"name": "20-pipeline-copydata",
+	"properties": {
+		"activities": [
+			{
+				"name": "ForEachcopydata",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Lookupformetadata",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Lookupformetadata').output.value",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Copydatafiles",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "DelimitedTextSource",
+									"storeSettings": {
+										"type": "AzureBlobFSReadSettings",
+										"recursive": false,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "DelimitedTextReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobFSWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_Metadata",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_Metadata",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "Lookupformetadata",
+				"type": "Lookup",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": false,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"dataset": {
+						"referenceName": "DS_Metadata",
+						"type": "DatasetReference"
+					},
+					"firstRowOnly": false
+				}
+			}
+		],
+		"variables": {
+			"metadata": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"Inputfile": "Employee.csv",
+						"Inputcontainer": "input",
+						"Inputdirectory": "Folder",
+						"Outputfile": "Employee3.csv",
+						"Outputcontainer": "folderforeach",
+						"Outputdirectory": "subfolderforeach1"
+					},
+					{
+						"Inputfile": "Department.csv",
+						"Inputcontainer": "input",
+						"Inputdirectory": "Folder",
+						"Outputfile": "Department3.csv",
+						"Outputcontainer": "folderforeach",
+						"Outputdirectory": "subfolderforeach2"
+					},
+					{
+						"Inputfile": "Sample_data.csv",
+						"Inputcontainer": "input",
+						"Inputdirectory": "Folder",
+						"Outputfile": "Sample_data3.csv",
+						"Outputcontainer": "folderforeach",
+						"Outputdirectory": "subfolderforeach3"
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2024-11-13T14:14:31Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
