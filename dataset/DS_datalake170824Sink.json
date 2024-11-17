@@ -1,0 +1,25 @@
+{
+	"name": "DS_datalake170824Sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_datalake170824",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Start_date.csv",
+				"folderPath": "Folder",
+				"fileSystem": "output"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
