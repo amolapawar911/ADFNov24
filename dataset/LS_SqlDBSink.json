@@ -1,0 +1,17 @@
+{
+	"name": "LS_SqlDBSink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_appdb",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "departmentfirstcopy"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
